@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Anushree Bhattacharya — Fuzzy Graph Theory Researcher</title>
+<meta name="description" content="Official portfolio of Dr. Anushree Bhattacharya, National Post Doctoral Fellow at the Indian Statistical Institute, Kolkata. Fuzzy graph theory, fuzzy optimization and decision-making under uncertainty." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ SHARED STYLES — Anushree Bhattacharya Portfolio ============ */
+:root {
+  --white: #ffffff;
+  --soft: #f6f9ff;
+  --blue-900: #123a6b;
+  --blue-700: #1e5fb4;
+  --blue-500: #2f7de1;
+  --blue-400: #5a9bf0;
+  --blue-100: #dcebff;
+  --skin-200: #ffe4d1;
+  --skin-400: #f6c8a2;
+  --skin-500: #efa97c;
+  --ink: #20324b;
+  --muted: #5d7089;
+  --shadow: 0 18px 50px -18px rgba(30, 95, 180, .28);
+  --radius: 22px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(160deg, var(--white) 0%, var(--soft) 45%, #fff3ea 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+a { color: var(--blue-500); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+#networkBg { position: fixed; inset: 0; z-index: -1; }
+
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .5;
+  z-index: -2;
+  animation: drift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.blob.b1 { width: 520px; height: 520px; background: var(--blue-400); top: -140px; left: -120px; }
+.blob.b2 { width: 460px; height: 460px; background: var(--skin-400); bottom: -120px; right: -100px; animation-delay: -6s; }
+.blob.b3 { width: 340px; height: 340px; background: var(--skin-200); top: 45%; left: 60%; animation-delay: -12s; }
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(60px, -40px) scale(1.08); }
+  100% { transform: translate(-40px, 50px) scale(.94); }
+}
+
+/* ---------- Nav ---------- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 6vw;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(47,125,225,.12);
+  z-index: 100;
+  transition: padding .3s ease, box-shadow .3s ease;
+}
+nav.shrink { padding: 10px 6vw; box-shadow: var(--shadow); }
+.logo {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  color: var(--blue-900);
+  font-size: 1.15rem;
+  letter-spacing: .2px;
+  cursor: pointer;
+}
+.logo span { color: var(--skin-500); }
+.nav-links { display: flex; gap: 22px; align-items: center; }
+.nav-links a {
+  color: var(--muted);
+  font-size: .92rem;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--blue-500), var(--skin-500));
+  transition: width .3s ease;
+}
+.nav-links a:hover { color: var(--blue-700); text-decoration: none; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--blue-700); }
+.nav-links a.active::after { width: 100%; }
+.nav-cta {
+  background: linear-gradient(135deg, var(--blue-500), var(--skin-500));
+  color: #fff !important;
+  padding: 9px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px -8px rgba(47,125,225,.55);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -10px rgba(239,169,124,.7); text-decoration: none; }
+.burger { display: none; background: none; border: none; cursor: pointer; }
+.burger span {
+  display: block; width: 24px; height: 3px;
+  background: var(--blue-900); margin: 5px 0;
+  border-radius: 3px;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ---------- Page header ---------- */
+.page-head {
+  padding: 150px 6vw 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.page-head h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  color: var(--blue-900);
+  line-height: 1.1;
+}
+.page-head .grad {
+  background: linear-gradient(100deg, var(--blue-700), var(--skin-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-head p { color: var(--muted); max-width: 640px; margin: 14px auto 0; }
+
+/* ---------- Sections ---------- */
+main { position: relative; }
+section { max-width: 1200px; margin: 0 auto; padding: 70px 6vw; }
+.sec-head { text-align: center; margin-bottom: 50px; }
+.sec-eyebrow {
+  display: inline-block;
+  background: var(--blue-100);
+  color: var(--blue-700);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.sec-head h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  color: var(--blue-900);
+}
+.sec-head p { color: var(--muted); max-width: 640px; margin: 10px auto 0; }
+
+.reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ---------- Hero (home) ---------- */
+header.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 40px;
+  padding: 140px 6vw 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(47,125,225,.25);
+  color: var(--blue-700);
+  font-size: .8rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 50px;
+  margin-bottom: 22px;
+  box-shadow: 0 6px 16px -8px rgba(47,125,225,.4);
+}
+.badge .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #35c98b;
+  animation: pulse 1.6s ease infinite;
+}
+@keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.6); opacity: .5; } }
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.08;
+  color: var(--blue-900);
+  margin-bottom: 14px;
+}
+.hero h1 .grad {
+  background: linear-gradient(100deg, var(--blue-700), var(--skin-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.type-wrap { font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 600; color: var(--blue-700); min-height: 1.8em; margin-bottom: 16px; }
+.cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--skin-500); margin-left: 3px; vertical-align: text-bottom; animation: blink .8s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero p.tag { color: var(--muted); max-width: 560px; font-size: 1.02rem; margin-bottom: 28px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: .95rem;
+  border: none;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  font-family: inherit;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+  color: #fff;
+  box-shadow: 0 12px 26px -10px rgba(30,95,180,.6);
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 34px -12px rgba(30,95,180,.7); text-decoration: none; }
+.btn-skin {
+  background: linear-gradient(135deg, var(--skin-400), var(--skin-500));
+  color: #5b3416;
+  box-shadow: 0 12px 26px -12px rgba(239,169,124,.7);
+}
+.btn-skin:hover { transform: translateY(-3px) scale(1.02); text-decoration: none; }
+.btn-ghost {
+  background: rgba(255,255,255,.7);
+  border: 1.5px solid rgba(30,95,180,.3);
+  color: var(--blue-700);
+}
+.btn-ghost:hover { border-color: var(--blue-500); background: #fff; transform: translateY(-3px); text-decoration: none; }
+
+.hero-visual { display: flex; justify-content: center; }
+.profile-card {
+  position: relative;
+  width: min(360px, 82vw);
+  aspect-ratio: 4/5;
+  border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+  background: linear-gradient(150deg, var(--blue-100), var(--skin-200));
+  padding: 10px;
+  box-shadow: var(--shadow);
+  animation: morph 9s ease-in-out infinite;
+}
+@keyframes morph {
+  0%,100% { border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%; }
+  33%     { border-radius: 55% 45% 40% 60% / 45% 55% 50% 50%; }
+  66%     { border-radius: 45% 55% 60% 40% / 60% 45% 45% 55%; }
+}
+.profile-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+.float-chip {
+  position: absolute;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(47,125,225,.18);
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--blue-900);
+  box-shadow: 0 14px 30px -14px rgba(30,95,180,.5);
+  animation: floaty 5s ease-in-out infinite;
+  display: flex; align-items: center; gap: 8px;
+}
+.float-chip i { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; font-style: normal; font-size: .7rem; }
+.chip-1 { top: -18px; left: -40px; }
+.chip-1 i { background: var(--blue-100); color: var(--blue-700); }
+.chip-2 { bottom: 12%; right: -46px; animation-delay: -2s; }
+.chip-2 i { background: var(--skin-200); color: var(--skin-500); }
+.chip-3 { bottom: -20px; left: 6%; animation-delay: -3.5s; }
+.chip-3 i { background: var(--blue-100); color: var(--blue-700); }
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  color: var(--muted); font-size: .75rem; gap: 6px;
+  animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+.mouse { width: 22px; height: 36px; border: 2px solid var(--blue-400); border-radius: 14px; position: relative; }
+.mouse::after {
+  content: ""; position: absolute; top: 6px; left: 50%;
+  width: 3px; height: 7px; margin-left: -1.5px;
+  background: var(--skin-500); border-radius: 3px;
+  animation: wheel 1.6s ease infinite;
+}
+@keyframes wheel { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(12px); opacity: 0; } }
+
+/* ---------- About ---------- */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.about-photo-wrap { position: relative; }
+.about-photo {
+  width: 100%; max-width: 400px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transform: rotate(-2deg);
+  transition: transform .5s ease;
+}
+.about-photo:hover { transform: rotate(0) scale(1.02); }
+.about-photo img { width: 100%; display: block; }
+.exp-badge {
+  position: absolute;
+  right: 0; bottom: -18px;
+  background: linear-gradient(135deg, var(--skin-400), var(--skin-500));
+  color: #5b3416;
+  border-radius: 18px;
+  padding: 16px 22px;
+  text-align: center;
+  box-shadow: 0 16px 30px -14px rgba(239,169,124,.8);
+  animation: floaty 6s ease-in-out infinite;
+}
+.exp-badge .n { font-size: 1.8rem; font-weight: 800; display: block; line-height: 1; }
+.exp-badge .l { font-size: .72rem; font-weight: 600; }
+.about-copy h3 { font-family: "Playfair Display", serif; font-size: 1.5rem; color: var(--blue-900); margin-bottom: 14px; }
+.about-copy p { color: var(--muted); margin-bottom: 14px; }
+.affil-strip { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 18px; }
+.affil-chip {
+  background: linear-gradient(135deg, var(--blue-100), var(--skin-200));
+  border: 1px solid rgba(47,125,225,.18);
+  border-radius: 14px;
+  padding: 11px 16px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--blue-900);
+}
+.affil-chip small {
+  display: block;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+.stat {
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(47,125,225,.15);
+  border-radius: 16px;
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px -14px rgba(30,95,180,.4);
+  transition: transform .3s ease;
+}
+.stat:hover { transform: translateY(-6px); }
+.stat .n { font-size: 1.7rem; font-weight: 800; color: var(--blue-700); }
+.stat .l { font-size: .75rem; color: var(--muted); font-weight: 600; }
+
+/* ---------- Research interests ---------- */
+.interests-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+.interest {
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(47,125,225,.14);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, border-color .35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.interest::before {
+  content: "";
+  position: absolute;
+  top: -60%; right: -60%;
+  width: 150%; height: 150%;
+  background: radial-gradient(circle, rgba(47,125,225,.12), transparent 60%);
+  transition: transform .5s ease;
+  transform: scale(0);
+  border-radius: 50%;
+}
+.interest:hover::before { transform: scale(1); }
+.interest:hover { transform: translateY(-10px) rotate(-1deg); border-color: var(--blue-400); box-shadow: var(--shadow); }
+.interest .icon {
+  width: 58px; height: 58px;
+  margin: 0 auto 14px;
+  border-radius: 18px;
+  display: grid; place-items: center;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--blue-100), var(--skin-200));
+  transition: transform .4s ease;
+}
+.interest:hover .icon { transform: scale(1.15) rotate(8deg); }
+.interest h4 { color: var(--blue-900); font-size: 1rem; margin-bottom: 6px; }
+.interest p { font-size: .82rem; color: var(--muted); }
+
+/* ---------- Publications ---------- */
+.filters { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 36px; }
+.filters button {
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(47,125,225,.25);
+  color: var(--blue-700);
+  font-weight: 600;
+  font-size: .85rem;
+  padding: 8px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .3s ease;
+}
+.filters button.active, .filters button:hover {
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 22px -10px rgba(30,95,180,.7);
+}
+.pub-list { display: grid; gap: 18px; }
+.pub {
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(47,125,225,.13);
+  border-left: 4px solid var(--blue-400);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: transform .3s ease, box-shadow .3s ease, border-left-color .3s ease;
+}
+.pub:hover { transform: translateX(8px); box-shadow: var(--shadow); border-left-color: var(--skin-500); }
+.pub-year {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-500), var(--skin-500));
+  color: #fff;
+  font-weight: 800;
+  font-size: .8rem;
+  padding: 8px 12px;
+  border-radius: 12px;
+  min-width: 62px;
+  text-align: center;
+}
+.pub-body h4 { color: var(--blue-900); font-size: 1rem; line-height: 1.45; margin-bottom: 4px; }
+.pub-body .venue { color: var(--muted); font-size: .82rem; font-style: italic; }
+.pub-body .abstract { color: var(--muted); font-size: .86rem; margin-top: 6px; }
+
+/* ---------- Timeline ---------- */
+.timeline { position: relative; max-width: 760px; margin: 0 auto; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 18px; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--blue-400), var(--skin-500));
+  border-radius: 3px;
+}
+.tl-item { position: relative; padding-left: 58px; margin-bottom: 34px; }
+.tl-dot {
+  position: absolute;
+  left: 8px; top: 6px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 4px solid var(--blue-500);
+  box-shadow: 0 0 0 5px rgba(47,125,225,.15);
+  animation: pulse 2.4s ease infinite;
+}
+.tl-item.current .tl-dot { border-color: var(--skin-500); box-shadow: 0 0 0 5px rgba(239,169,124,.2); }
+.tl-card {
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(47,125,225,.14);
+  border-radius: 18px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 24px -18px rgba(30,95,180,.5);
+  transition: transform .3s ease;
+}
+.tl-card:hover { transform: translateY(-4px); }
+.tl-card .when { font-size: .75rem; font-weight: 700; color: var(--skin-500); letter-spacing: 1px; text-transform: uppercase; }
+.tl-card h4 { color: var(--blue-900); margin: 6px 0 2px; font-size: 1.05rem; }
+.tl-card .where { color: var(--muted); font-size: .88rem; }
+
+/* ---------- Awards ---------- */
+.awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+.award {
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(47,125,225,.14);
+  border-radius: var(--radius);
+  padding: 26px 22px;
+  text-align: center;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease;
+}
+.award:hover { transform: translateY(-8px) scale(1.02); box-shadow: var(--shadow); }
+.award .medal {
+  width: 64px; height: 64px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 1.7rem;
+  background: linear-gradient(135deg, var(--skin-200), var(--skin-500));
+  animation: floaty 5s ease-in-out infinite;
+}
+.award:nth-child(2) .medal { background: linear-gradient(135deg, var(--blue-100), var(--blue-400)); animation-delay: -1.5s; }
+.award:nth-child(3) .medal { background: linear-gradient(135deg, var(--skin-200), var(--blue-100)); animation-delay: -3s; }
+.award:nth-child(4) .medal { background: linear-gradient(135deg, var(--blue-100), var(--blue-400)); animation-delay: -4s; }
+.award h4 { color: var(--blue-900); font-size: .98rem; line-height: 1.4; margin-bottom: 6px; }
+.award .yr { color: var(--skin-500); font-weight: 700; font-size: .85rem; }
+
+/* ---------- Network ---------- */
+.collab-wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.network-canvas {
+  width: 100%;
+  min-height: 360px;
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(47,125,225,.15);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: grab;
+}
+.network-canvas:active { cursor: grabbing; }
+.names { display: flex; flex-direction: column; gap: 12px; }
+.name-card {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(47,125,225,.13);
+  border-radius: 14px;
+  padding: 12px 16px;
+  transition: transform .3s ease, border-color .3s ease;
+}
+.name-card:hover { transform: translateX(6px); border-color: var(--skin-500); }
+.name-card .initials {
+  width: 40px; height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: .8rem;
+  background: linear-gradient(135deg, var(--blue-100), var(--skin-200));
+  color: var(--blue-700);
+}
+.name-card .role { font-size: .8rem; color: var(--blue-700); font-weight: 600; }
+.name-card .inst { font-size: .78rem; color: var(--muted); }
+
+/* ---------- Contact ---------- */
+.contact-card {
+  max-width: 820px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(220,235,255,.7), rgba(255,228,209,.6));
+  border: 1px solid rgba(47,125,225,.18);
+  border-radius: 30px;
+  padding: 56px 40px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.contact-card h2 { font-family: "Playfair Display", serif; font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--blue-900); margin-bottom: 10px; }
+.contact-card > p { color: var(--muted); margin-bottom: 30px; }
+.contact-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.c-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white);
+  color: var(--blue-700);
+  font-weight: 600;
+  font-size: .9rem;
+  padding: 13px 22px;
+  border-radius: 50px;
+  border: 1px solid rgba(47,125,225,.2);
+  box-shadow: 0 10px 22px -14px rgba(30,95,180,.5);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.c-link:hover { transform: translateY(-4px) scale(1.03); box-shadow: var(--shadow); text-decoration: none; }
+.c-link .ci { font-size: 1.15rem; }
+
+/* ---------- Applied focus list ---------- */
+.applied-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+.applied-card {
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(47,125,225,.14);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.applied-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.applied-card .ai {
+  width: 48px; height: 48px; flex-shrink: 0;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, var(--blue-100), var(--skin-200));
+}
+.applied-card h4 { color: var(--blue-900); font-size: 1rem; margin-bottom: 4px; }
+.applied-card p { color: var(--muted); font-size: .86rem; }
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 36px 6vw;
+  color: var(--muted);
+  font-size: .85rem;
+  border-top: 1px solid rgba(47,125,225,.12);
+  background: rgba(255,255,255,.6);
+  margin-top: 30px;
+}
+footer .f-name { font-family: "Playfair Display", serif; color: var(--blue-900); font-size: 1.05rem; margin-bottom: 6px; }
+footer .f-links { margin: 10px 0; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- Back to top ---------- */
+#toTop {
+  position: fixed;
+  bottom: 26px; right: 26px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--blue-500), var(--skin-500));
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 12px 26px -10px rgba(30,95,180,.7);
+  opacity: 0; visibility: hidden;
+  transform: translateY(16px);
+  transition: all .35s ease;
+  z-index: 90;
+}
+#toTop.show { opacity: 1; visibility: visible; transform: translateY(0); }
+#toTop:hover { transform: translateY(-4px); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .nav-links {
+    position: fixed;
+    top: 64px; right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(255,255,255,.97);
+    padding: 24px 30px;
+    border-radius: 0 0 0 20px;
+    box-shadow: var(--shadow);
+    transform: translateX(100%);
+    transition: transform .35s ease;
+    gap: 18px;
+  }
+  .nav-links.open { transform: translateX(0); }
+  .burger { display: block; }
+  header.hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; }
+  .hero p.tag { margin: 0 auto 26px; }
+  .hero-btns { justify-content: center; }
+  .float-chip.chip-1 { left: 0; }
+  .float-chip.chip-2 { right: 0; }
+  .about-grid, .collab-wrap { grid-template-columns: 1fr; }
+  .about-photo-wrap { display: flex; justify-content: center; }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .page-head { padding-top: 130px; }
+}
+@media (max-width: 520px) {
+  .stats { grid-template-columns: 1fr; }
+  .pub { flex-direction: column; }
+  .contact-card { padding: 40px 22px; }
+}
+
+
+/* ---------- Gallery ---------- */
+.gallery {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+/* ---------- Gallery ---------- */
+.gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Big auto-fade box */
+.main-box {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 52vw, 560px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--soft);
+}
+.main-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.1s ease-in-out;
+}
+.main-slide.active { opacity: 1; }
+.main-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.main-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 26px 28px;
+  background: linear-gradient(to top, rgba(18,58,107,.9), rgba(18,58,107,0));
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(.82rem, 1.4vw, 1rem);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.main-slide.active .main-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+.g-arrows {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  pointer-events: none;
+}
+.g-arrows button {
+  pointer-events: auto;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,.78);
+  color: var(--blue-700);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: grid; place-items: center;
+  box-shadow: 0 8px 20px -10px rgba(30,95,180,.6);
+  transition: background .3s ease, color .3s ease, transform .25s ease;
+}
+.g-arrows button:hover { background: var(--blue-500); color: #fff; transform: scale(1.06); }
+
+/* Small masked thumbnail boxes */
+.thumbs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.thumb {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.thumb:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.thumb.active { border-color: var(--blue-500); }
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* transparent mask overlay on each small box */
+.thumb .mask {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(255,255,255,.6), rgba(255,255,255,.06));
+  backdrop-filter: blur(1.5px);
+  opacity: 1;
+  transition: opacity .4s ease;
+}
+.thumb .mask span {
+  width: 100%;
+  text-align: center;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--blue-900);
+  background: rgba(255,255,255,.82);
+  padding: 7px 8px;
+}
+.thumb:hover .mask { opacity: 0; }
+.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; max-width: 980px; margin: 0 auto; }
+form.contact-form {
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(47,125,225,.14);
+  border-radius: var(--radius);
+  padding: 32px 30px;
+  box-shadow: var(--shadow);
+}
+form.contact-form label { display: block; font-size: .82rem; font-weight: 600; color: var(--blue-900); margin: 14px 0 6px; }
+form.contact-form input, form.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid rgba(47,125,225,.22);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: .92rem;
+  color: var(--ink);
+  background: var(--soft);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+form.contact-form input:focus, form.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 4px rgba(47,125,225,.15);
+}
+form.contact-form textarea { resize: vertical; min-height: 120px; }
+.form-msg { text-align: center; font-weight: 600; font-size: .9rem; margin-top: 14px; min-height: 1.4em; }
+.form-msg.ok { color: #1d9e5f; }
+.form-msg.err { color: #d64545; }
+@media (max-width: 860px) { .contact-wrap { grid-template-columns: 1fr; } }
+
+/* ---------- Multi-page behaviour (single file) ---------- */
+.page { display: none; padding: 0; max-width: none; margin: 0; }
+.page.active { display: block; }
+main .page-head { padding-top: 110px; }
+</style>
+</head>
+<body>
+
+<canvas id="networkBg"></canvas>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<nav id="navbar">
+  <a class="logo" href="#home">Anushree<span>.</span>B</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#experience">Experience</a>
+    <a href="#awards">Awards</a>
+    <a href="#network">Network</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main>
+
+  <!-- ==================== HOME ==================== -->
+  <section class="page active" id="home">
+    <header class="hero">
+      <div class="hero-copy">
+        <span class="badge"><span class="dot"></span> National Post-Doctoral Fellow · ISI Kolkata</span>
+        <h1>Dr. Anushree <span class="grad">Bhattacharya</span></h1>
+        <div class="type-wrap"><span id="typeText"></span><span class="cursor"></span></div>
+        <p class="tag">Turning mathematics of uncertainty into real-world solutions — applying fuzzy graph theory and optimization to healthcare, sustainability, economics, and smart infrastructure.</p>
+        <div class="hero-btns">
+          <a href="#publications" class="btn btn-primary">Explore Research</a>
+          <a href="#contact" class="btn btn-skin">Get in Touch</a>
+          <a href="#about" class="btn btn-ghost">More About Me</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="profile-card">
+          <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&amp;user=LJO9VQcAAAAJ&amp;citpid=4" alt="Dr. Anushree Bhattacharya" />
+          <div class="float-chip chip-1"><i>🔬</i> 13+ Publications</div>
+          <div class="float-chip chip-2"><i>🧮</i> Fuzzy Graph Theory</div>
+          <div class="float-chip chip-3"><i>🏅</i> Gold Medalist</div>
+        </div>
+      </div>
+      <div class="scroll-hint"><div class="mouse"></div><span>scroll</span></div>
+    </header>
+
+    <section style="padding-top:20px;">
+      <div class="stats reveal">
+        <div class="stat"><span class="n" data-count="13">0</span><span class="l">PUBLICATIONS</span></div>
+        <div class="stat"><span class="n" data-count="185">0</span><span class="l">CITATIONS</span></div>
+        <div class="stat"><span class="n" data-count="4530">0</span><span class="l">READS</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Explore</span>
+        <h2>What you'll find here</h2>
+        <p>Six pages, one researcher — wander through her research, papers, journey and collaborations.</p>
+      </div>
+      <div class="interests-grid">
+        <a href="#about" class="interest reveal"><div class="icon">👩‍🔬</div><h4>About</h4><p>Her story, affiliations and a peek at the person behind the papers.</p></a>
+        <a href="#research" class="interest reveal"><div class="icon">🧠</div><h4>Research</h4><p>Fuzzy graph theory, optimization & the applied problems she solves.</p></a>
+        <a href="#publications" class="interest reveal"><div class="icon">📄</div><h4>Publications</h4><p>Filter the peer-reviewed journals & book chapters by year.</p></a>
+        <a href="#experience" class="interest reveal"><div class="icon">🕰️</div><h4>Experience</h4><p>An animated timeline of her academic journey.</p></a>
+        <a href="#awards" class="interest reveal"><div class="icon">🏆</div><h4>Awards</h4><p>Gold medals, paper presentation honours & scholarships.</p></a>
+        <a href="#network" class="interest reveal"><div class="icon">🕸️</div><h4>Network</h4><p>Drag the nodes of her collaboration graph — she's a graph theorist!</p></a>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact-card reveal">
+        <h2>Let's work together</h2>
+        <p>Open to collaborations in fuzzy graph theory, optimization, and applied decision-making research.</p>
+        <div class="contact-links">
+          <a class="c-link" href="https://www.researchgate.net/profile/Anushree-Bhattacharya-2" target="_blank" rel="noopener"><span class="ci">🧪</span> ResearchGate</a>
+          <a class="c-link" href="https://scholar.google.com/citations?hl=en&user=LJO9VQcAAAAJ" target="_blank" rel="noopener"><span class="ci">🎓</span> Google Scholar</a>
+          <a class="c-link" href="https://dl.acm.org/profile/99660066000" target="_blank" rel="noopener"><span class="ci">💻</span> ACM DL</a>
+          <a class="c-link" href="mailto:anumath96@gmail.com"><span class="ci">✉️</span> anumath96@gmail.com</a>
+          <a class="c-link" href="#contact"><span class="ci">📝</span> Contact Page</a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== GALLERY ==================== -->
+  <section class="page" id="gallery">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> Portfolio Gallery</span>
+      <h1>Gallery</h1>
+      <p>Moments captured — conferences, events, and milestones.</p>
+    </div>
+    <section class="gallery">
+      <div class="main-box" id="mainBox">
+        <div class="main-slide active">
+          <img src="picsforportfolio/Gold Medal for 1st  Rank in M.Sc. Mathematics from Vidyasagar University, India.jpg" alt="Gold Medal for 1st Rank in M.Sc. Mathematics" />
+          <div class="main-caption">Gold Medal · 1st Rank in M.Sc. Mathematics, Vidyasagar University</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Doctoral Degree Completion in the presence of parents.jpeg" alt="Doctoral Degree Completion in the presence of parents" />
+          <div class="main-caption">Doctoral Degree Completion in the presence of parents</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/At IndiSetu, Kolkata, India- 2026.jpeg" alt="At IndiSetu, Kolkata, India 2026" />
+          <div class="main-caption">At IndiSetu, Kolkata, India — 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/aRtCS Inauguration at IIT Madras, 2026.jpeg" alt="aRtCS Inauguration at IIT Madras, 2026" />
+          <div class="main-caption">aRtCS Inauguration at IIT Madras, 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/1st Rank Holder Medal in B.Sc. (Mathematics Honrs.) from Raja N.L.Khan Women's College, India.JPG" alt="1st Rank Holder Medal in B.Sc. Mathematics" />
+          <div class="main-caption">1st Rank Holder Medal in B.Sc. (Mathematics Honours), Raja N.L.Khan Women's College</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2025.jpeg" alt="Outstanding Paper Presentation Award in ICRDR-2025" />
+          <div class="main-caption">Outstanding Paper Presentation Award in ICRDR-2025</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2023, Tamralipta Mahavidyalaya, India.jpg" alt="Outstanding Paper Presentation Award in ICRDR-2023" />
+          <div class="main-caption">Outstanding Paper Presentation Award in ICRDR-2023, Tamralipta Mahavidyalaya</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award at 5th Regional Science and Technology Congress 2022-2023.jpg" alt="Outstanding Paper Presentation at 5th Regional Science Congress" />
+          <div class="main-caption">Outstanding Paper Presentation at 5th Regional Science &amp; Technology Congress 2022-2023</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award at 30th West Bengal State Science Congress-2023.jpeg" alt="Outstanding Paper Presentation at 30th West Bengal State Science Congress 2023" />
+          <div class="main-caption">Outstanding Paper Presentation at 30th West Bengal State Science Congress-2023</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Innovative Ideas presentation at Vidyasagar University, 2025.jpeg" alt="Innovative Ideas presentation at Vidyasagar University, 2025" />
+          <div class="main-caption">Innovative Ideas presentation at Vidyasagar University, 2025</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/IIT Madras visit 2026.jpeg" alt="IIT Madras visit 2026" />
+          <div class="main-caption">IIT Madras visit, 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/ICGFG-2026 at VIT, Chennai, India.jpeg" alt="ICGFG-2026 at VIT, Chennai, India" />
+          <div class="main-caption">ICGFG-2026 at VIT, Chennai, India</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Teacher's Day at Vidyasagar University, 2023.jpg" alt="Teacher's Day at Vidyasagar University, 2023" />
+          <div class="main-caption">Teacher's Day at Vidyasagar University, 2023</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Ph.D. Viva Voce, 2025.jpeg" alt="Ph.D. Viva Voce, 2025" />
+          <div class="main-caption">Ph.D. Viva Voce, 2025</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Ph.D. degree certificate from honourable Governor of West Bengal is R. N. Ravi at 23rd Convocation of Vidyasagar University, 2026.jpeg" alt="Ph.D. degree certificate at 23rd Convocation of Vidyasagar University, 2026" />
+          <div class="main-caption">Ph.D. degree certificate from Hon'ble Governor of West Bengal, 23rd Convocation of Vidyasagar University, 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/WEICOCO-2020 at NIT Durgapur.jpg" alt="WEICOCO-2020 at NIT Durgapur" />
+          <div class="main-caption">WEICOCO-2020 at NIT Durgapur</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Thesis Presentation on Final Viva.jpeg" alt="Thesis Presentation on Final Viva" />
+          <div class="main-caption">Thesis Presentation on Final Viva</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/With Douglas Brent West in CALDAM 2020 at IIT Hyderabad.jpg" alt="With Douglas Brent West in CALDAM 2020 at IIT Hyderabad" />
+          <div class="main-caption">With Douglas Brent West in CALDAM 2020 at IIT Hyderabad</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay and co-researchers at ISI, Kolkata, India.jpeg" alt="With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay at ISI, Kolkata" />
+          <div class="main-caption">With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay &amp; co-researchers at ISI, Kolkata</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/With my Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026.jpeg" alt="With Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026" />
+          <div class="main-caption">With Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026</div>
+        </div>
+        <div class="g-arrows">
+          <button class="g-prev" aria-label="Previous">&#10094;</button>
+          <button class="g-next" aria-label="Next">&#10095;</button>
+        </div>
+      </div>
+
+      <div class="thumbs-grid">
+        <div class="thumb active"><img src="picsforportfolio/Gold Medal for 1st  Rank in M.Sc. Mathematics from Vidyasagar University, India.jpg" alt="Gold Medal" /><div class="mask"><span>Gold Medal · M.Sc.</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Doctoral Degree Completion in the presence of parents.jpeg" alt="Doctoral Degree" /><div class="mask"><span>Doctoral Degree</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/At IndiSetu, Kolkata, India- 2026.jpeg" alt="IndiSetu" /><div class="mask"><span>IndiSetu 2026</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/aRtCS Inauguration at IIT Madras, 2026.jpeg" alt="aRtCS" /><div class="mask"><span>aRtCS · IIT Madras</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/1st Rank Holder Medal in B.Sc. (Mathematics Honrs.) from Raja N.L.Khan Women's College, India.JPG" alt="B.Sc. Medal" /><div class="mask"><span>1st Rank · B.Sc.</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2025.jpeg" alt="ICRDR 2025" /><div class="mask"><span>ICRDR 2025</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2023, Tamralipta Mahavidyalaya, India.jpg" alt="ICRDR 2023" /><div class="mask"><span>ICRDR 2023</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award at 5th Regional Science and Technology Congress 2022-2023.jpg" alt="Regional Congress" /><div class="mask"><span>Regional Congress</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award at 30th West Bengal State Science Congress-2023.jpeg" alt="WB State Congress" /><div class="mask"><span>WB State Congress</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Innovative Ideas presentation at Vidyasagar University, 2025.jpeg" alt="Innovative Ideas" /><div class="mask"><span>Innovative Ideas</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/IIT Madras visit 2026.jpeg" alt="IIT Madras" /><div class="mask"><span>IIT Madras 2026</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/ICGFG-2026 at VIT, Chennai, India.jpeg" alt="ICGFG 2026" /><div class="mask"><span>ICGFG 2026</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Teacher's Day at Vidyasagar University, 2023.jpg" alt="Teacher's Day" /><div class="mask"><span>Teacher's Day</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Ph.D. Viva Voce, 2025.jpeg" alt="Ph.D. Viva" /><div class="mask"><span>Ph.D. Viva 2025</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Ph.D. degree certificate from honourable Governor of West Bengal is R. N. Ravi at 23rd Convocation of Vidyasagar University, 2026.jpeg" alt="Ph.D. Degree" /><div class="mask"><span>Ph.D. Degree</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/WEICOCO-2020 at NIT Durgapur.jpg" alt="WEICOCO" /><div class="mask"><span>WEICOCO 2020</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Thesis Presentation on Final Viva.jpeg" alt="Final Viva" /><div class="mask"><span>Final Viva</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/With Douglas Brent West in CALDAM 2020 at IIT Hyderabad.jpg" alt="CALDAM 2020" /><div class="mask"><span>CALDAM 2020</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay and co-researchers at ISI, Kolkata, India.jpeg" alt="Post-Doc Mentor" /><div class="mask"><span>Post-Doc Mentor</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/With my Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026.jpeg" alt="Ph.D. Guide" /><div class="mask"><span>Prof. M. Pal</span></div></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section class="page" id="about">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> National Post-Doctoral Fellow · ISI Kolkata</span>
+      <h1>About <span class="grad">Dr. Bhattacharya</span></h1>
+      <p>The mathematician behind the mathematics of uncertainty.</p>
+    </div>
+    <section>
+      <div class="about-grid">
+        <div class="about-photo-wrap reveal">
+          <div class="about-photo">
+            <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&amp;user=LJO9VQcAAAAJ&amp;citpid=4" alt="Dr. Anushree Bhattacharya portrait" />
+          </div>
+          <div class="exp-badge">
+            <span class="n" id="yearsCount" data-count="7">0</span>
+            <span class="l">YEARS IN<br/>RESEARCH</span>
+          </div>
+        </div>
+        <div class="about-copy reveal">
+          <h3>National Post-Doctoral Fellow @ Indian Statistical Institute</h3>
+          <div class="affil-strip">
+            <div class="affil-chip"><small>Current Affiliation</small>Indian Statistical Institute, Kolkata</div>
+            <div class="affil-chip"><small>Unit</small>Machine Intelligence Unit (MIU)</div>
+          </div>
+          <p>Anushree is a National Post Doctoral Fellow (N-PDF, ANRF, Govt. of India) at the <strong>Machine Intelligence Unit, Indian Statistical Institute</strong>, Kolkata. She was previously a research fellow on a project funded by the <strong>West Bengal Department of Higher Education, Science &amp; Technology and Biotechnology (WBDHESTBT)</strong>.</p>
+          <p>She holds a <strong>Ph.D.</strong> and an <strong>M.Sc. (Gold Medalist in Mathematics)</strong> from Vidyasagar University. Her research centers on fuzzy graph theory, fuzzy optimization, algorithmic techniques, and decision-making under uncertainty — applied to economics, healthcare, sustainability, and infrastructure.</p>
+          <p>She is currently also an <strong>Honorary Visiting Fellow</strong> at the Faculty of Engineering and Information Technology, University of Technology Sydney, Australia.</p>
+          <div class="stats">
+            <div class="stat"><span class="n" data-count="13">0</span><span class="l">PUBLICATIONS</span></div>
+            <div class="stat"><span class="n" data-count="185">0</span><span class="l">CITATIONS</span></div>
+            <div class="stat"><span class="n" data-count="4530">0</span><span class="l">READS</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Education</span>
+        <h2>Academic Background</h2>
+      </div>
+      <div class="interests-grid">
+        <div class="interest reveal"><div class="icon">🎓</div><h4>Doctor of Philosophy (Ph.D.)</h4><p>Vidyasagar University · Department of Applied Mathematics with Oceanology and Computer Programming</p></div>
+        <div class="interest reveal"><div class="icon">🏅</div><h4>M.Sc. Mathematics — Gold Medalist</h4><p>Vidyasagar University</p></div>
+        <div class="interest reveal"><div class="icon">📖</div><h4>DST-INSPIRE Scholar</h4><p>Department of Science &amp; Technology, Govt. of India</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Focus</span>
+        <h2>Applied Focus Areas</h2>
+        <p>Her work consistently bridges pure fuzzy graph theory with practical, high-impact applications.</p>
+      </div>
+      <div class="applied-grid">
+        <div class="applied-card reveal"><div class="ai">🩺</div><div><h4>Healthcare</h4><p>Cancer classification via graphoidal covering and artificial neural networks.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🌍</div><div><h4>Public Policy &amp; SDGs</h4><p>Gender equality (SDG 5), climate action, and biomedical waste management.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🏙️</div><div><h4>Infrastructure &amp; Urban Planning</h4><p>CCTV placement, electricity distribution, bank facility location, emergency aircraft landing.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">📈</div><div><h4>Economics</h4><p>Business strategy optimization and analysis of the Indian economy in the post-pandemic "new normal".</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🌿</div><div><h4>Ecology</h4><p>Energy transformation modeling in ecological systems.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🧮</div><div><h4>Decision Science</h4><p>Computer-assisted decision-making systems under uncertainty.</p></div></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== RESEARCH ==================== -->
+  <section class="page" id="research">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> Mathematics of Uncertainty</span>
+      <h1>Research <span class="grad">Interests</span></h1>
+      <p>Hover the cards to explore each focus area — and the real-world problems they solve.</p>
+    </div>
+    <section>
+      <div class="interests-grid">
+        <div class="interest reveal" data-desc="Graphoidal covering, vertex & tree covering of fuzzy graphs — the backbone of her work."><div class="icon">🔗</div><h4>Fuzzy Graph Theory</h4><p>Graphoidal covering, vertex &amp; tree covering of fuzzy graphs.</p></div>
+        <div class="interest reveal" data-desc="Optimizing decisions in the presence of uncertainty and incomplete information."><div class="icon">🧠</div><h4>Fuzzy Optimization</h4><p>Optimizing decisions in the presence of uncertainty.</p></div>
+        <div class="interest reveal" data-desc="Novel algorithmic techniques & complexity analysis for covering problems."><div class="icon">⚙️</div><h4>Algorithm Design</h4><p>Novel algorithmic techniques &amp; complexity analysis.</p></div>
+        <div class="interest reveal" data-desc="Combinatorial structures behind real-world networks."><div class="icon">📊</div><h4>Graph Theory</h4><p>Combinatorial structures behind real networks.</p></div>
+        <div class="interest reveal" data-desc="Turning theory into running, efficient code."><div class="icon">💻</div><h4>Programming Problems</h4><p>Turning theory into running, efficient code.</p></div>
+        <div class="interest reveal" data-desc="Computer-assisted decision support systems."><div class="icon">🧭</div><h4>Decision Making</h4><p>Computer-assisted decision support systems.</p></div>
+      </div>
+      <div id="researchTip" style="text-align:center; margin-top:24px; min-height:1.6em; color:var(--muted); font-size:.92rem; font-weight:500;"></div>
+    </section>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Applied</span>
+        <h2>Real-World Impact</h2>
+        <p>From hospitals to highways — where her fuzzy mathematics gets applied.</p>
+      </div>
+      <div class="applied-grid">
+        <div class="applied-card reveal"><div class="ai">🩺</div><div><h4>Cancer Classification</h4><p>Fuzzy graphoidal covering + artificial neural networks to predict the nature of cancer.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🛬</div><div><h4>Emergency Aircraft Landing</h4><p>Multi-objective optimization via Particle Swarm Optimization on fuzzy graphs.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🚔</div><div><h4>Optimal CCTV Placement</h4><p>Vertex covering of fuzzy graphs applied to Hyderabad's road network.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">💡</div><div><h4>Electricity Distribution</h4><p>Fuzzy tree covering numbers for power distribution systems.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🏦</div><div><h4>Bank Facility Location</h4><p>Tree covering of fuzzy graphs for the Indian banking system.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">♻️</div><div><h4>Waste Management</h4><p>Picture fuzzy goal programming for sustainable biomedical waste in India.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🌦️</div><div><h4>Climate Action (SDG 13)</h4><p>Fuzzy vertex covering for climate action strategy development.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">⚧️</div><div><h4>Gender Equality (SDG 5)</h4><p>Analyzing India's SDG 5 performance with covering of fuzzy graphs.</p></div></div>
+        <div class="applied-card reveal"><div class="ai">🦠</div><div><h4>Economy in the New Normal</h4><p>Fuzzy covering to investigate the Indian economy post-pandemic.</p></div></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== PUBLICATIONS ==================== -->
+  <section class="page" id="publications">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> 13 Peer-Reviewed Papers</span>
+      <h1>Publications &amp; <span class="grad">Book Chapters</span></h1>
+      <p>Click a year to filter. Most work is co-authored with Prof. Madhumangal Pal, Vidyasagar University.</p>
+    </div>
+    <section>
+      <div class="filters reveal">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="2026">2026</button>
+        <button data-filter="2025">2025</button>
+        <button data-filter="2024">2024</button>
+        <button data-filter="2023">2023</button>
+        <button data-filter="2022">2022</button>
+        <button data-filter="2021">2021</button>
+      </div>
+      <div class="pub-list" id="pubList">
+        <div class="pub reveal" data-year="2026">
+          <span class="pub-year">2026</span>
+          <div class="pub-body">
+            <h4>Fuzzy Graphoidal Covering of Fuzzy Graphs and its Application in Cancer Classification under Artificial Neural Network Context</h4>
+            <div class="venue">Computación y Sistemas — Apr 2026</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2025">
+          <span class="pub-year">2025</span>
+          <div class="pub-body">
+            <h4>Analysis of Sustainable Biomedical Waste Management in India through Picture Fuzzy Goal Programming Approach</h4>
+            <div class="venue">Operational Research — Dec 2025</div>
+            <div class="abstract">Optimizing cost and error parameters in biomedical waste management using a picture fuzzy goal programming approach.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2025">
+          <span class="pub-year">2025</span>
+          <div class="pub-body">
+            <h4>Improvement Strategy Making in Sustainable Developmental Goal for Climate Action by Fuzzy Vertex Covering of Fuzzy Graphs</h4>
+            <div class="venue">New Mathematics and Natural Computation — Feb 2025 · co-authors G. Muhiuddin, Tami Alsubie et al.</div>
+            <div class="abstract">Introduces a new fuzzy vertex cover definition based on fuzzy covering radius for climate action strategy.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2025">
+          <span class="pub-year">2025</span>
+          <div class="pub-body">
+            <h4>Transformation of Energy in Fuzzy Graph and Its Application in Ecological System</h4>
+            <div class="venue">Journal of Uncertain Systems — Jun 2025 · co-authors P. Pramanik, N. Patra, M. Pal</div>
+            <div class="abstract">Computes graph energy for fuzzy graphs with interval-number edge weights.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2024">
+          <span class="pub-year">2024</span>
+          <div class="pub-body">
+            <h4>Covering of Fuzzy Graphs and its Application in Emergency Aircraft Landing using Particle Swarm Optimization Method</h4>
+            <div class="venue">Applied Soft Computing — Jul 2024</div>
+            <div class="abstract">Models facility-location problems as fuzzy graphs and solves multi-objective optimization via Particle Swarm Optimization.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2024">
+          <span class="pub-year">2024</span>
+          <div class="pub-body">
+            <h4>Prediction on Nature of Cancer by Fuzzy Graphoidal Covering Number using Artificial Neural Network</h4>
+            <div class="venue">Artificial Intelligence in Medicine — Feb 2024</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2023">
+          <span class="pub-year">2023</span>
+          <div class="pub-body">
+            <h4>A Fuzzy Graph Theory Approach to the Facility Location Problem: A Case Study in the Indian Banking System</h4>
+            <div class="venue">Mathematics (MDPI) — Jul 2023</div>
+            <div class="abstract">Defines tree covering for fuzzy graphs and applies it to locating bank facilities, using Hyderabad's road network as a case study.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2023">
+          <span class="pub-year">2023</span>
+          <div class="pub-body">
+            <h4>Fundamentals of Fuzzy Optimization and Decision-Making Problems (Book Chapter)</h4>
+            <div class="venue">Jun 2023 · co-authors M. Pal, C. Jana</div>
+            <div class="abstract">Covers foundational concepts of classical vs. fuzzy optimization and feasible/optimal solutions.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2022">
+          <span class="pub-year">2022</span>
+          <div class="pub-body">
+            <h4>Fuzzy Tree Covering Number for Fuzzy Graphs with its Real-Life Application in Electricity Distribution System</h4>
+            <div class="venue">Sadhana — Dec 2022</div>
+            <div class="abstract">Defines fuzzy tree covering number using edge and vertex membership functions.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2021">
+          <span class="pub-year">2021</span>
+          <div class="pub-body">
+            <h4>Fifth Sustainable Development Goal Gender Equality in India: Analysis by Mathematics of Uncertainty and Covering of Fuzzy Graphs</h4>
+            <div class="venue">Neural Computing and Applications — Nov 2021</div>
+            <div class="abstract">Analyzes India's performance on SDG 5 (Gender Equality) using a pseudo-vertex-covering set of fuzzy graphs.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2021">
+          <span class="pub-year">2021</span>
+          <div class="pub-body">
+            <h4>Vertex Covering Problems of Fuzzy Graphs and their Application in CCTV Installation</h4>
+            <div class="venue">Neural Computing and Applications — Jun 2021</div>
+            <div class="abstract">Applies vertex covering sets of fuzzy graphs to optimal CCTV placement, illustrated with Hyderabad's road map.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2021">
+          <span class="pub-year">2021</span>
+          <div class="pub-body">
+            <h4>Optimization in Business Strategy as a Part of Sustainable Economic Growth using Clique Covering of Fuzzy Graphs</h4>
+            <div class="venue">Soft Computing — May 2021</div>
+            <div class="abstract">Introduces four algorithms for clique covering of fuzzy graphs to construct linear programming models for business strategy.</div>
+          </div>
+        </div>
+        <div class="pub reveal" data-year="2021">
+          <span class="pub-year">2021</span>
+          <div class="pub-body">
+            <h4>Fuzzy Covering Problem of Fuzzy Graphs and its Application to Investigate the Indian Economy in New Normal</h4>
+            <div class="venue">Journal of Applied Mathematics and Computing — Mar 2021</div>
+            <div class="abstract">Introduces fuzzy covering maps and fuzzy covering graphs, with special types discussed.</div>
+          </div>
+        </div>
+      </div>
+      <p id="pubCount" style="text-align:center; margin-top:22px; color:var(--muted); font-size:.9rem; font-weight:600;"></p>
+    </section>
+  </section>
+
+  <!-- ==================== EXPERIENCE ==================== -->
+  <section class="page" id="experience">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> The Journey So Far</span>
+      <h1>Experience &amp; <span class="grad">Education</span></h1>
+      <p>Scroll through the animated timeline of her academic life.</p>
+    </div>
+    <section>
+      <div class="timeline">
+        <div class="tl-item reveal current">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="when">Current</div>
+            <h4>National Post-Doctoral Fellow</h4>
+            <div class="where">Indian Statistical Institute · Machine Intelligence Unit, Kolkata, India</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="when">Jun 2025 – Jun 2026</div>
+            <h4>Honorary Visiting Fellow</h4>
+            <div class="where">Faculty of Engineering and Information Technology · University of Technology Sydney, Australia</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="when">May 2019 – Sep 2025</div>
+            <h4>Researcher</h4>
+            <div class="where">Department of Applied Mathematics · Vidyasagar University, Medinīpur, India</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="when">Ph.D.</div>
+            <h4>Doctor of Philosophy</h4>
+            <div class="where">Vidyasagar University · Applied Mathematics with Oceanology &amp; Computer Programming</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="when">M.Sc.</div>
+            <h4>Master of Science in Mathematics — Gold Medalist</h4>
+            <div class="where">Vidyasagar University</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== AWARDS ==================== -->
+  <section class="page" id="awards">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> Recognition &amp; Honours</span>
+      <h1>Awards &amp; <span class="grad">Achievements</span></h1>
+      <p>Hover the medals — each one floats with pride.</p>
+    </div>
+    <section>
+      <div class="awards-grid">
+        <div class="award reveal"><div class="medal">🏆</div><h4>Outstanding Paper Presentation</h4><div class="yr">30th State Science Congress · March 2023</div></div>
+        <div class="award reveal"><div class="medal">🎤</div><h4>Outstanding Paper Presentation Award</h4><div class="yr">7th Regional Science Congress · January 2023</div></div>
+        <div class="award reveal"><div class="medal">🥇</div><h4>Gold Medal in M.Sc. Mathematics</h4><div class="yr">Vidyasagar University · September 2019</div></div>
+        <div class="award reveal"><div class="medal">✨</div><h4>DST-INSPIRE Scholarship</h4><div class="yr">Department of Science &amp; Technology · May 2013</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Impact</span>
+        <h2>Citation Highlights</h2>
+        <p>Her work is cited by researchers around the world.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="n" data-count="185">0</span><span class="l">RESEARCHGATE CITATIONS</span></div>
+        <div class="stat"><span class="n" data-count="170">0</span><span class="l">GOOGLE SCHOLAR CITATIONS</span></div>
+        <div class="stat"><span class="n" data-count="4530">0</span><span class="l">RESEARCHGATE READS</span></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== NETWORK ==================== -->
+  <section class="page" id="network">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> A Graph Theorist's Network</span>
+      <h1>Research <span class="grad">Network</span></h1>
+      <p>An interactive graph of her collaboration network — fitting, for a graph theorist. <strong>Drag the nodes!</strong></p>
+    </div>
+    <section>
+      <div class="collab-wrap">
+        <canvas class="network-canvas reveal" id="networkCanvas"></canvas>
+        <div class="names">
+          <a class="name-card reveal" href="https://scholar.google.com/citations?user=ZN2dqfoAAAAJ" target="_blank" rel="noopener"><div class="initials">MP</div><div><div class="role">Prof. Madhumangal Pal</div><div class="inst">Primary Collaborator · Vidyasagar University</div></div></a>
+          <a class="name-card reveal" href="https://scholar.google.com/scholar?q=%22Ghulam+Muhiuddin%22" target="_blank" rel="noopener"><div class="initials">GM</div><div><div class="role">G. Muhiuddin</div><div class="inst">University of Tabuk</div></div></a>
+          <a class="name-card reveal" href="https://scholar.google.com/scholar?q=%22Chiranjibe+Jana%22" target="_blank" rel="noopener"><div class="initials">CJ</div><div><div class="role">Chiranjibe Jana</div><div class="inst">Co-author</div></div></a>
+          <a class="name-card reveal" href="https://scholar.google.com/scholar?q=%22Partha+Pratim+Pramanik%22" target="_blank" rel="noopener"><div class="initials">PP</div><div><div class="role">Partha Pratim Pramanik</div><div class="inst">Co-author</div></div></a>
+          <a class="name-card reveal" href="https://scholar.google.com/scholar?q=%22Nupur+Patra%22+Vidyasagar" target="_blank" rel="noopener"><div class="initials">NP</div><div><div class="role">Nupur Patra</div><div class="inst">Co-author</div></div></a>
+          <a class="name-card reveal" href="https://scholar.google.com/scholar?q=%22Deena+Al-Kadi%22+Taif" target="_blank" rel="noopener"><div class="initials">DA</div><div><div class="role">Deena Al-Kadi</div><div class="inst">Taif University</div></div></a>
+          <a class="name-card reveal" href="https://scholar.google.com/scholar?q=%22Tami+Alsubie%22+Taif" target="_blank" rel="noopener"><div class="initials">TA</div><div><div class="role">Tami Alsubie</div><div class="inst">Co-author</div></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Citations</span>
+        <h2>Researchers in Her Circle</h2>
+        <p>Notable citing / cited researchers across her network.</p>
+      </div>
+      <div class="interests-grid">
+        <div class="interest reveal"><div class="icon">🧑‍🔬</div><h4>Amelia Bilbao</h4><p>University of Oviedo</p></div>
+        <div class="interest reveal"><div class="icon">🧮</div><h4>Tarasankar Pramanik</h4><p>Vidyasagar University</p></div>
+        <div class="interest reveal"><div class="icon">🤖</div><h4>Laszlo T. Koczy</h4><p>Budapest University of Technology &amp; Economics</p></div>
+        <div class="interest reveal"><div class="icon">📦</div><h4>Biswajit Sarkar</h4><p>Yonsei University</p></div>
+        <div class="interest reveal"><div class="icon">🔗</div><h4>Sovan Samanta</h4><p>Tamralipta Mahavidyalaya</p></div>
+        <div class="interest reveal"><div class="icon">👩‍🎓</div><h4>Anita Pal</h4><p>NIT Durgapur</p></div>
+        <div class="interest reveal"><div class="icon">🌐</div><h4>Florentin Smarandache</h4><p>University of New Mexico</p></div>
+        <div class="interest reveal"><div class="icon">📈</div><h4>Wing-Keung Wong</h4><p>Asia University</p></div>
+        <div class="interest reveal"><div class="icon">🚀</div><h4>Qin Xin</h4><p>University of the Faroe Islands</p></div>
+        <div class="interest reveal"><div class="icon">🔬</div><h4>M.S. Sunitha</h4><p>NIT Calicut</p></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section class="page" id="contact">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> Let's Connect</span>
+      <h1>Get in <span class="grad">Touch</span></h1>
+      <p>Collaborations, questions or just to talk fuzzy graphs — reach out through any channel.</p>
+    </div>
+    <section>
+      <div class="contact-wrap">
+        <div class="contact-card reveal" style="margin:0;">
+          <h2>Direct Channels</h2>
+          <p>Find her on the academic web.</p>
+          <div class="contact-links" style="flex-direction:column;">
+            <a class="c-link" href="https://www.researchgate.net/profile/Anushree-Bhattacharya-2" target="_blank" rel="noopener"><span class="ci">🧪</span> ResearchGate</a>
+            <a class="c-link" href="https://scholar.google.com/citations?hl=en&user=LJO9VQcAAAAJ" target="_blank" rel="noopener"><span class="ci">🎓</span> Google Scholar</a>
+          <a class="c-link" href="https://dl.acm.org/profile/99660066000" target="_blank" rel="noopener"><span class="ci">💻</span> ACM Digital Library</a>
+          <a class="c-link" href="mailto:anumath96@gmail.com"><span class="ci">✉️</span> anumath96@gmail.com</a>
+        </div>
+      </div>
+      <form class="contact-form reveal" id="contactForm">
+          <h3 style="font-family:'Playfair Display',serif; color:var(--blue-900);">Send a Message</h3>
+          <label for="cf-name">Your Name</label>
+          <input type="text" id="cf-name" placeholder="Jane Doe" required />
+          <label for="cf-email">Your Email</label>
+          <input type="email" id="cf-email" placeholder="jane@example.com" required />
+          <label for="cf-subject">Subject</label>
+          <input type="text" id="cf-subject" placeholder="Collaboration inquiry" />
+          <label for="cf-msg">Message</label>
+          <textarea id="cf-msg" placeholder="Hello Dr. Bhattacharya, ..." required></textarea>
+          <button type="submit" class="btn btn-primary" style="margin-top:20px; width:100%;">Send Message ✨</button>
+          <div class="form-msg" id="formMsg"></div>
+        </form>
+      </div>
+    </section>
+  </section>
+
+</main>
+
+<footer>
+  <div class="f-name">Dr. Anushree Bhattacharya</div>
+  <div class="f-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#experience">Experience</a>
+    <a href="#awards">Awards</a>
+    <a href="#network">Network</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div>© 2026 · National Post-Doctoral Fellow, Indian Statistical Institute, Kolkata</div>
+  <div>website made by Aritra Banerjee</div>
+</footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+/* ============ SHARED SCRIPT — Anushree Bhattacharya Portfolio ============ */
+
+/* ---------- Interactive particle/graph background ---------- */
+(function () {
+  var canvas = document.getElementById("networkBg");
+  if (!canvas) return;
+  var ctx = canvas.getContext("2d");
+  var w, h, particles = [];
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", resize);
+  var N = Math.min(70, Math.floor(window.innerWidth / 20));
+  var colors = ["#2f7de1", "#f6c8a2", "#5a9bf0"];
+  for (var i = 0; i < N; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - .5) * .6,
+      vy: (Math.random() - .5) * .6,
+      r: Math.random() * 2.2 + 1,
+      c: colors[Math.floor(Math.random() * 3)]
+    });
+  }
+  var mouse = { x: null, y: null };
+  window.addEventListener("mousemove", function (e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener("mouseout", function () { mouse.x = null; mouse.y = null; });
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+      if (mouse.x !== null) {
+        var dx = mouse.x - p.x, dy = mouse.y - p.y;
+        var d = Math.hypot(dx, dy);
+        if (d < 120 && d > 0) { p.x -= dx / d * .8; p.y -= dy / d * .8; }
+      }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c;
+      ctx.globalAlpha = .55;
+      ctx.fill();
+    }
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var a = particles[i], b = particles[j];
+        var d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 110) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = "#2f7de1";
+          ctx.globalAlpha = (1 - d / 110) * .18;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ---------- Typing animation ---------- */
+(function () {
+  var el = document.getElementById("typeText");
+  if (!el) return;
+  var phrases = [
+    "Researcher in Fuzzy Graph Theory",
+    "National Post-Doctoral Fellow @ ISI Kolkata",
+    "Mathematician · Gold Medalist",
+    "Honorary Visiting Fellow @ UTS Australia",
+    "Turning uncertainty into decisions"
+  ];
+  var pi = 0, ci = 0, deleting = false;
+  function type() {
+    var cur = phrases[pi];
+    if (!deleting) {
+      el.textContent = cur.slice(0, ++ci);
+      if (ci === cur.length) { deleting = true; setTimeout(type, 1600); return; }
+      setTimeout(type, 55);
+    } else {
+      el.textContent = cur.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 400); return; }
+      setTimeout(type, 28);
+    }
+  }
+  setTimeout(type, 700);
+})();
+
+/* ---------- Navbar scroll + mobile menu + back-to-top ---------- */
+(function () {
+  var nav = document.getElementById("navbar");
+  var toTop = document.getElementById("toTop");
+  var burger = document.getElementById("burger");
+  var navLinks = document.getElementById("navLinks");
+  if (burger && navLinks) {
+    burger.addEventListener("click", function () {
+      burger.classList.toggle("open");
+      navLinks.classList.toggle("open");
+    });
+    navLinks.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        burger.classList.remove("open");
+        navLinks.classList.remove("open");
+      });
+    });
+  }
+  window.addEventListener("scroll", function () {
+    if (nav) nav.classList.toggle("shrink", window.scrollY > 40);
+    if (toTop) toTop.classList.toggle("show", window.scrollY > 500);
+  });
+  if (toTop) toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+})();
+
+/* ---------- Scroll reveal ---------- */
+(function () {
+  var els = document.querySelectorAll(".reveal");
+  if (!els.length || !("IntersectionObserver" in window)) {
+    els.forEach(function (e) { e.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+
+/* ---------- Animated counters ---------- */
+(function () {
+  function animate(el, target) {
+    var dur = 1500, start = performance.now();
+    function tick(now) {
+      var p = Math.min((now - start) / dur, 1);
+      el.textContent = Math.floor(target * (1 - Math.pow(1 - p, 3))).toLocaleString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  var counters = document.querySelectorAll(".stat .n[data-count]");
+  if (counters.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        animate(e.target, +e.target.dataset.count);
+        e.target.dataset.done = "1";
+        io.unobserve(e.target);
+      });
+    }, { threshold: .6 });
+    counters.forEach(function (el) { io.observe(el); });
+  }
+  var years = document.getElementById("yearsCount");
+  if (years) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var t = +e.target.dataset.count || 0;
+          var dur = 1800, start = performance.now();
+          (function tick(now) {
+            var prog = Math.min((now - start) / dur, 1);
+            e.target.textContent = Math.floor(t * (1 - Math.pow(1 - prog, 3)));
+            if (prog < 1) requestAnimationFrame(tick);
+          })(start);
+          e.target.dataset.done = "1";
+          io2.unobserve(e.target);
+        }
+      });
+    }, { threshold: .5 });
+    io2.observe(years);
+  }
+  window.__startCounter = function (el) {
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    animate(el, +el.dataset.count);
+  };
+  window.__startYears = function (el) {
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    var t = +el.dataset.count || 0;
+    var dur = 1800, start = performance.now();
+    (function tick(now) {
+      var prog = Math.min((now - start) / dur, 1);
+      el.textContent = Math.floor(t * (1 - Math.pow(1 - prog, 3)));
+      if (prog < 1) requestAnimationFrame(tick);
+    })(start);
+  };
+})();
+
+/* ---------- Publication filters ---------- */
+(function () {
+  var btns = document.querySelectorAll(".filters button");
+  var pubs = document.querySelectorAll("#pubList .pub");
+  if (!btns.length || !pubs.length) return;
+  btns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      btns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      var f = btn.dataset.filter;
+      pubs.forEach(function (pub) {
+        var show = f === "all" || pub.dataset.year === f;
+        pub.style.display = show ? "flex" : "none";
+      });
+    });
+  });
+})();
+
+/* ---------- Interactive collaboration network graph ---------- */
+(function () {
+  var canvas = document.getElementById("networkCanvas");
+  if (!canvas) return;
+  var ctx = canvas.getContext("2d");
+  var DPR = 2;
+  var W = 0, H = 0;
+
+  var nodes = [
+    { id: "AB", label: "A. Bhattacharya", bx: .5, by: .5, r: 24, color: "#2f7de1" },
+    { id: "MP", label: "M. Pal", bx: .18, by: .22, r: 17, color: "#f6c8a2" },
+    { id: "GM", label: "G. Muhiuddin", bx: .84, by: .18, r: 15, color: "#5a9bf0" },
+    { id: "CJ", label: "C. Jana", bx: .3, by: .8, r: 15, color: "#f6c8a2" },
+    { id: "PP", label: "P. P. Pramanik", bx: .8, by: .76, r: 15, color: "#5a9bf0" },
+    { id: "NP", label: "N. Patra", bx: .6, by: .12, r: 13, color: "#f6c8a2" },
+    { id: "DA", label: "D. Al-Kadi", bx: .1, by: .52, r: 13, color: "#5a9bf0" },
+    { id: "TA", label: "T. Alsubie", bx: .92, by: .5, r: 13, color: "#f6c8a2" }
+  ];
+
+  function layout() {
+    nodes.forEach(function (n) {
+      if (n !== drag) { n.x = W * n.bx; n.y = H * n.by; }
+    });
+  }
+
+  function resizeCanvas() {
+    var rect = canvas.getBoundingClientRect();
+    if (!rect.width) return;
+    canvas.width = rect.width * DPR;
+    canvas.height = rect.height * DPR;
+    canvas.style.width = rect.width + "px";
+    canvas.style.height = rect.height + "px";
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    layout();
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+  var edges = [["AB", "MP"], ["AB", "GM"], ["AB", "CJ"], ["AB", "PP"], ["AB", "NP"], ["AB", "DA"], ["AB", "TA"]];
+  var drag = null, hover = null, offX = 0, offY = 0;
+
+  function pos(e) {
+    var r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+  canvas.addEventListener("mousedown", function (e) {
+    var p = pos(e);
+    var hit = nodes.find(function (n) { return Math.hypot(n.x - p.x, n.y - p.y) < n.r + 8; });
+    if (hit) { drag = hit; offX = p.x - hit.x; offY = p.y - hit.y; canvas.style.cursor = "grabbing"; }
+  });
+  window.addEventListener("mousemove", function (e) {
+    var p = pos(e);
+    if (drag) { drag.x = p.x - offX; drag.y = p.y - offY; }
+    else {
+      var hit = nodes.find(function (n) { return Math.hypot(n.x - p.x, n.y - p.y) < n.r + 8; });
+      hover = hit || null;
+      canvas.style.cursor = hover ? "pointer" : "grab";
+    }
+  });
+  window.addEventListener("mouseup", function () { drag = null; canvas.style.cursor = "grab"; });
+
+  function draw() {
+    var w = canvas.clientWidth || W, h = canvas.clientHeight || H;
+    if (!w || !h) { requestAnimationFrame(draw); return; }
+    ctx.clearRect(0, 0, w, h);
+    edges.forEach(function (e) {
+      var na = nodes.find(function (n) { return n.id === e[0]; });
+      var nb = nodes.find(function (n) { return n.id === e[1]; });
+      if (!na || !nb || !isFinite(na.x) || !isFinite(na.y) || !isFinite(nb.x) || !isFinite(nb.y)) return;
+      var g = ctx.createLinearGradient(na.x, na.y, nb.x, nb.y);
+      g.addColorStop(0, "#2f7de1");
+      g.addColorStop(1, "#f6c8a2");
+      ctx.beginPath();
+      ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y);
+      ctx.strokeStyle = g; ctx.lineWidth = 2.5; ctx.stroke();
+    });
+    nodes.forEach(function (n) {
+      var pulsing = Math.sin(performance.now() / 600 + n.r) * .5 + .5;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r + 5, 0, Math.PI * 2);
+      ctx.fillStyle = n.color; ctx.globalAlpha = .18 * (hover === n ? 1 : pulsing * .8 + .2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = n.color;
+      ctx.shadowColor = "rgba(47,125,225,.5)"; ctx.shadowBlur = hover === n ? 16 : 0;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "#fff";
+      ctx.font = "600 10px Inter, sans-serif";
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(n.id, n.x, n.y + .5);
+      if (hover === n) {
+        ctx.fillStyle = "#20324b";
+        ctx.font = "600 12px Inter, sans-serif";
+        ctx.fillText(n.label, n.x, n.y - n.r - 10);
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ---------- FAQ accordions / tabs / toggles ---------- */
+(function () {
+  var accordions = document.querySelectorAll("[data-accordion]");
+  accordions.forEach(function (acc) {
+    var headers = acc.querySelectorAll("[data-acc-head]");
+    headers.forEach(function (h) {
+      h.addEventListener("click", function () {
+        var body = h.nextElementSibling;
+        var open = body.style.maxHeight && body.style.maxHeight !== "0px";
+        var all = acc.querySelectorAll("[data-acc-body]");
+        all.forEach(function (b) { b.style.maxHeight = "0px"; });
+        if (!open) body.style.maxHeight = body.scrollHeight + "px";
+      });
+    });
+  });
+})();
+
+</script>
+
+<script>
+/* ---------- Page switching (multi-page in a single file) ---------- */
+(function () {
+  var pages = document.querySelectorAll(".page");
+  var navAs = document.querySelectorAll(".nav-links a");
+  var burger = document.getElementById("burger");
+  var navLinks = document.getElementById("navLinks");
+
+  function showPage(id) {
+    pages.forEach(function (p) { p.classList.toggle("active", p.id === id); });
+    navAs.forEach(function (a) {
+      var t = a.getAttribute("href");
+      a.classList.toggle("active", t === "#" + id);
+    });
+    window.scrollTo(0, 0);
+    var page = document.getElementById(id);
+    if (page) {
+      page.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+      page.querySelectorAll(".stat .n[data-count]").forEach(function (el) {
+        if (window.__startCounter) window.__startCounter(el);
+      });
+      var years = page.querySelector("#yearsCount");
+      if (years && window.__startYears) window.__startYears(years);
+    }
+    window.dispatchEvent(new Event("resize"));
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var href = a.getAttribute("href");
+      if (!href || href.length < 2) return;
+      var id = href.slice(1);
+      var target = document.getElementById(id);
+      if (target && target.classList && target.classList.contains("page")) {
+        e.preventDefault();
+        showPage(id);
+        if (burger) burger.classList.remove("open");
+        if (navLinks) navLinks.classList.remove("open");
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+/* ---------- Research interest tooltip ---------- */
+document.querySelectorAll(".interest[data-desc]").forEach(function (c) {
+  c.addEventListener("mouseenter", function () {
+    document.getElementById("researchTip").textContent = c.dataset.desc;
+  });
+  c.addEventListener("mouseleave", function () {
+    document.getElementById("researchTip").textContent = "";
+  });
+});
+</script>
+
+<script>
+/* ---------- Publication counter ---------- */
+function updateCount() {
+  var visible = document.querySelectorAll("#pubList .pub").length;
+  document.getElementById("pubCount").textContent = "Showing " + visible + " of 13 publications";
+}
+window.addEventListener("load", updateCount);
+document.querySelectorAll(".filters button").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var f = this.dataset.filter;
+    var n = 0;
+    document.querySelectorAll("#pubList .pub").forEach(function (p) {
+      if (f === "all" || p.dataset.year === f) { p.style.display = "flex"; n++; }
+      else p.style.display = "none";
+    });
+    document.getElementById("pubCount").textContent = "Showing " + n + " of 13 publications";
+  });
+});
+</script>
+
+<script>
+/* ---------- Gallery: auto fade + thumbnails ---------- */
+(function () {
+  var box = document.getElementById("mainBox");
+  if (!box) return;
+  var slides = box.querySelectorAll(".main-slide");
+  var thumbs = document.querySelectorAll(".thumb");
+  var prevBtn = box.querySelector(".g-prev");
+  var nextBtn = box.querySelector(".g-next");
+  if (!slides.length) return;
+
+  var idx = 0, timer = null, COUNT = slides.length;
+
+  function show(n) {
+    idx = ((n % COUNT) + COUNT) % COUNT;
+    slides.forEach(function (s, i) { s.classList.toggle("active", i === idx); });
+    thumbs.forEach(function (t, i) { t.classList.toggle("active", i === idx); });
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  function start() { stop(); timer = setInterval(next, 4500); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  if (prevBtn) prevBtn.addEventListener("click", function () { prev(); start(); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { next(); start(); });
+  thumbs.forEach(function (t, i) {
+    t.addEventListener("click", function () { show(i); start(); });
+  });
+
+  box.addEventListener("mouseenter", stop);
+  box.addEventListener("mouseleave", start);
+
+  show(0);
+  start();
+})();
+
+/* ---------- Contact form (demo) ---------- */
+(function () {
+  var form = document.getElementById("contactForm");
+  if (!form) return;
+  var msg = document.getElementById("formMsg");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("cf-name").value.trim();
+    var email = document.getElementById("cf-email").value.trim();
+    var text = document.getElementById("cf-msg").value.trim();
+    if (!name || !email || !text) { msg.textContent = "Please fill in all required fields."; msg.className = "form-msg err"; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = "Please enter a valid email address."; msg.className = "form-msg err"; return; }
+    msg.textContent = "Message ready to send! (Demo form — hook this to your backend or email service.)";
+    msg.className = "form-msg ok";
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>
