@@ -674,7 +674,127 @@ footer .f-links { margin: 10px 0; display: flex; gap: 18px; justify-content: cen
 }
 
 
-/* ---------- Contact page styles (single-file) ---------- */
+/* ---------- Gallery ---------- */
+.gallery {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+/* ---------- Gallery ---------- */
+.gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Big auto-fade box */
+.main-box {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 52vw, 560px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--soft);
+}
+.main-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.1s ease-in-out;
+}
+.main-slide.active { opacity: 1; }
+.main-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.main-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 26px 28px;
+  background: linear-gradient(to top, rgba(18,58,107,.9), rgba(18,58,107,0));
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(.82rem, 1.4vw, 1rem);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.main-slide.active .main-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+.g-arrows {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  pointer-events: none;
+}
+.g-arrows button {
+  pointer-events: auto;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,.78);
+  color: var(--blue-700);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: grid; place-items: center;
+  box-shadow: 0 8px 20px -10px rgba(30,95,180,.6);
+  transition: background .3s ease, color .3s ease, transform .25s ease;
+}
+.g-arrows button:hover { background: var(--blue-500); color: #fff; transform: scale(1.06); }
+
+/* Small masked thumbnail boxes */
+.thumbs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.thumb {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.thumb:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.thumb.active { border-color: var(--blue-500); }
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* transparent mask overlay on each small box */
+.thumb .mask {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(255,255,255,.6), rgba(255,255,255,.06));
+  backdrop-filter: blur(1.5px);
+  opacity: 1;
+  transition: opacity .4s ease;
+}
+.thumb .mask span {
+  width: 100%;
+  text-align: center;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--blue-900);
+  background: rgba(255,255,255,.82);
+  padding: 7px 8px;
+}
+.thumb:hover .mask { opacity: 0; }
 .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; max-width: 980px; margin: 0 auto; }
 form.contact-form {
   background: rgba(255,255,255,.85);
@@ -728,6 +848,7 @@ main .page-head { padding-top: 110px; }
     <a href="#experience">Experience</a>
     <a href="#awards">Awards</a>
     <a href="#network">Network</a>
+    <a href="#gallery">Gallery</a>
     <a href="#contact" class="nav-cta">Contact</a>
   </div>
   <button class="burger" id="burger" aria-label="Menu">
@@ -797,6 +918,126 @@ main .page-head { padding-top: 110px; }
           <a class="c-link" href="mailto:anumath96@gmail.com"><span class="ci">✉️</span> anumath96@gmail.com</a>
           <a class="c-link" href="#contact"><span class="ci">📝</span> Contact Page</a>
         </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ==================== GALLERY ==================== -->
+  <section class="page" id="gallery">
+    <div class="page-head">
+      <span class="badge"><span class="dot"></span> Portfolio Gallery</span>
+      <h1>Gallery</h1>
+      <p>Moments captured — conferences, events, and milestones.</p>
+    </div>
+    <section class="gallery">
+      <div class="main-box" id="mainBox">
+        <div class="main-slide active">
+          <img src="picsforportfolio/Gold Medal for 1st  Rank in M.Sc. Mathematics from Vidyasagar University, India.jpg" alt="Gold Medal for 1st Rank in M.Sc. Mathematics" />
+          <div class="main-caption">Gold Medal · 1st Rank in M.Sc. Mathematics, Vidyasagar University</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Doctoral Degree Completion in the presence of parents.jpeg" alt="Doctoral Degree Completion in the presence of parents" />
+          <div class="main-caption">Doctoral Degree Completion in the presence of parents</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/At IndiSetu, Kolkata, India- 2026.jpeg" alt="At IndiSetu, Kolkata, India 2026" />
+          <div class="main-caption">At IndiSetu, Kolkata, India — 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/aRtCS Inauguration at IIT Madras, 2026.jpeg" alt="aRtCS Inauguration at IIT Madras, 2026" />
+          <div class="main-caption">aRtCS Inauguration at IIT Madras, 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/1st Rank Holder Medal in B.Sc. (Mathematics Honrs.) from Raja N.L.Khan Women's College, India.JPG" alt="1st Rank Holder Medal in B.Sc. Mathematics" />
+          <div class="main-caption">1st Rank Holder Medal in B.Sc. (Mathematics Honours), Raja N.L.Khan Women's College</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2025.jpeg" alt="Outstanding Paper Presentation Award in ICRDR-2025" />
+          <div class="main-caption">Outstanding Paper Presentation Award in ICRDR-2025</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2023, Tamralipta Mahavidyalaya, India.jpg" alt="Outstanding Paper Presentation Award in ICRDR-2023" />
+          <div class="main-caption">Outstanding Paper Presentation Award in ICRDR-2023, Tamralipta Mahavidyalaya</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award at 5th Regional Science and Technology Congress 2022-2023.jpg" alt="Outstanding Paper Presentation at 5th Regional Science Congress" />
+          <div class="main-caption">Outstanding Paper Presentation at 5th Regional Science &amp; Technology Congress 2022-2023</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Outstanding Paper Presentation Award at 30th West Bengal State Science Congress-2023.jpeg" alt="Outstanding Paper Presentation at 30th West Bengal State Science Congress 2023" />
+          <div class="main-caption">Outstanding Paper Presentation at 30th West Bengal State Science Congress-2023</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Innovative Ideas presentation at Vidyasagar University, 2025.jpeg" alt="Innovative Ideas presentation at Vidyasagar University, 2025" />
+          <div class="main-caption">Innovative Ideas presentation at Vidyasagar University, 2025</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/IIT Madras visit 2026.jpeg" alt="IIT Madras visit 2026" />
+          <div class="main-caption">IIT Madras visit, 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/ICGFG-2026 at VIT, Chennai, India.jpeg" alt="ICGFG-2026 at VIT, Chennai, India" />
+          <div class="main-caption">ICGFG-2026 at VIT, Chennai, India</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Teacher's Day at Vidyasagar University, 2023.jpg" alt="Teacher's Day at Vidyasagar University, 2023" />
+          <div class="main-caption">Teacher's Day at Vidyasagar University, 2023</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Ph.D. Viva Voce, 2025.jpeg" alt="Ph.D. Viva Voce, 2025" />
+          <div class="main-caption">Ph.D. Viva Voce, 2025</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Ph.D. degree certificate from honourable Governor of West Bengal is R. N. Ravi at 23rd Convocation of Vidyasagar University, 2026.jpeg" alt="Ph.D. degree certificate at 23rd Convocation of Vidyasagar University, 2026" />
+          <div class="main-caption">Ph.D. degree certificate from Hon'ble Governor of West Bengal, 23rd Convocation of Vidyasagar University, 2026</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/WEICOCO-2020 at NIT Durgapur.jpg" alt="WEICOCO-2020 at NIT Durgapur" />
+          <div class="main-caption">WEICOCO-2020 at NIT Durgapur</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/Thesis Presentation on Final Viva.jpeg" alt="Thesis Presentation on Final Viva" />
+          <div class="main-caption">Thesis Presentation on Final Viva</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/With Douglas Brent West in CALDAM 2020 at IIT Hyderabad.jpg" alt="With Douglas Brent West in CALDAM 2020 at IIT Hyderabad" />
+          <div class="main-caption">With Douglas Brent West in CALDAM 2020 at IIT Hyderabad</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay and co-researchers at ISI, Kolkata, India.jpeg" alt="With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay at ISI, Kolkata" />
+          <div class="main-caption">With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay &amp; co-researchers at ISI, Kolkata</div>
+        </div>
+        <div class="main-slide">
+          <img src="picsforportfolio/With my Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026.jpeg" alt="With Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026" />
+          <div class="main-caption">With Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026</div>
+        </div>
+        <div class="g-arrows">
+          <button class="g-prev" aria-label="Previous">&#10094;</button>
+          <button class="g-next" aria-label="Next">&#10095;</button>
+        </div>
+      </div>
+
+      <div class="thumbs-grid">
+        <div class="thumb active"><img src="picsforportfolio/Gold Medal for 1st  Rank in M.Sc. Mathematics from Vidyasagar University, India.jpg" alt="Gold Medal" /><div class="mask"><span>Gold Medal · M.Sc.</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Doctoral Degree Completion in the presence of parents.jpeg" alt="Doctoral Degree" /><div class="mask"><span>Doctoral Degree</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/At IndiSetu, Kolkata, India- 2026.jpeg" alt="IndiSetu" /><div class="mask"><span>IndiSetu 2026</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/aRtCS Inauguration at IIT Madras, 2026.jpeg" alt="aRtCS" /><div class="mask"><span>aRtCS · IIT Madras</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/1st Rank Holder Medal in B.Sc. (Mathematics Honrs.) from Raja N.L.Khan Women's College, India.JPG" alt="B.Sc. Medal" /><div class="mask"><span>1st Rank · B.Sc.</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2025.jpeg" alt="ICRDR 2025" /><div class="mask"><span>ICRDR 2025</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award in ICRDR-2023, Tamralipta Mahavidyalaya, India.jpg" alt="ICRDR 2023" /><div class="mask"><span>ICRDR 2023</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award at 5th Regional Science and Technology Congress 2022-2023.jpg" alt="Regional Congress" /><div class="mask"><span>Regional Congress</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Outstanding Paper Presentation Award at 30th West Bengal State Science Congress-2023.jpeg" alt="WB State Congress" /><div class="mask"><span>WB State Congress</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Innovative Ideas presentation at Vidyasagar University, 2025.jpeg" alt="Innovative Ideas" /><div class="mask"><span>Innovative Ideas</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/IIT Madras visit 2026.jpeg" alt="IIT Madras" /><div class="mask"><span>IIT Madras 2026</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/ICGFG-2026 at VIT, Chennai, India.jpeg" alt="ICGFG 2026" /><div class="mask"><span>ICGFG 2026</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Teacher's Day at Vidyasagar University, 2023.jpg" alt="Teacher's Day" /><div class="mask"><span>Teacher's Day</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Ph.D. Viva Voce, 2025.jpeg" alt="Ph.D. Viva" /><div class="mask"><span>Ph.D. Viva 2025</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Ph.D. degree certificate from honourable Governor of West Bengal is R. N. Ravi at 23rd Convocation of Vidyasagar University, 2026.jpeg" alt="Ph.D. Degree" /><div class="mask"><span>Ph.D. Degree</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/WEICOCO-2020 at NIT Durgapur.jpg" alt="WEICOCO" /><div class="mask"><span>WEICOCO 2020</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/Thesis Presentation on Final Viva.jpeg" alt="Final Viva" /><div class="mask"><span>Final Viva</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/With Douglas Brent West in CALDAM 2020 at IIT Hyderabad.jpg" alt="CALDAM 2020" /><div class="mask"><span>CALDAM 2020</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/With Post-Doc Mentor Padmashri Prof. Sanghamitra Bandyopadhyay and co-researchers at ISI, Kolkata, India.jpeg" alt="Post-Doc Mentor" /><div class="mask"><span>Post-Doc Mentor</span></div></div>
+        <div class="thumb"><img src="picsforportfolio/With my Ph.D. guide Prof. Madhumangal Pal at Vidyasagar University, 2026.jpeg" alt="Ph.D. Guide" /><div class="mask"><span>Prof. M. Pal</span></div></div>
       </div>
     </section>
   </section>
@@ -1207,7 +1448,7 @@ main .page-head { padding-top: 110px; }
     <a href="#contact">Contact</a>
   </div>
   <div>© 2026 · National Post-Doctoral Fellow, Indian Statistical Institute, Kolkata</div>
-  <div>Made with <span style="color:var(--skin-500)">♥</span> · White · Blue · Skin</div>
+  <div>website made by Aritra Banerjee</div>
 </footer>
 
 <button id="toTop" aria-label="Back to top">↑</button>
@@ -1628,9 +1869,45 @@ document.querySelectorAll(".filters button").forEach(function (b) {
 </script>
 
 <script>
+/* ---------- Gallery: auto fade + thumbnails ---------- */
+(function () {
+  var box = document.getElementById("mainBox");
+  if (!box) return;
+  var slides = box.querySelectorAll(".main-slide");
+  var thumbs = document.querySelectorAll(".thumb");
+  var prevBtn = box.querySelector(".g-prev");
+  var nextBtn = box.querySelector(".g-next");
+  if (!slides.length) return;
+
+  var idx = 0, timer = null, COUNT = slides.length;
+
+  function show(n) {
+    idx = ((n % COUNT) + COUNT) % COUNT;
+    slides.forEach(function (s, i) { s.classList.toggle("active", i === idx); });
+    thumbs.forEach(function (t, i) { t.classList.toggle("active", i === idx); });
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  function start() { stop(); timer = setInterval(next, 4500); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  if (prevBtn) prevBtn.addEventListener("click", function () { prev(); start(); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { next(); start(); });
+  thumbs.forEach(function (t, i) {
+    t.addEventListener("click", function () { show(i); start(); });
+  });
+
+  box.addEventListener("mouseenter", stop);
+  box.addEventListener("mouseleave", start);
+
+  show(0);
+  start();
+})();
+
 /* ---------- Contact form (demo) ---------- */
 (function () {
   var form = document.getElementById("contactForm");
+  if (!form) return;
   var msg = document.getElementById("formMsg");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
